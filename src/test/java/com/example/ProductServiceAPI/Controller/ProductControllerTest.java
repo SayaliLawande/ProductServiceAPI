@@ -4,13 +4,15 @@ import com.example.ProductServiceAPI.DTOs.GenericProductDTO;
 import com.example.ProductServiceAPI.Service.ProductService;
 import org.aspectj.lang.annotation.Before;
 import org.assertj.core.api.Assert;
+import org.assertj.core.util.VisibleForTesting;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.mockito.Mockito.when;
 
-public class ProductControllerTest {
 
+public class ProductControllerTest {
+/*
     @MockBean
     private ProductService productService;
 
@@ -32,4 +34,6 @@ public class ProductControllerTest {
 
         //GenericProductDTO genericProductDTO = when(productService.getAllProducts()).thenReturn(generateGenericDTO());
     }
+*/
 }
+

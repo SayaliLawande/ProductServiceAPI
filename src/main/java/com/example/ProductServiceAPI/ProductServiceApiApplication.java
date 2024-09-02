@@ -35,7 +35,7 @@ public class ProductServiceApiApplication implements CommandLineRunner {
 		Product product = createProductRepoObj(category);
 		productRepository.save(product);
 
-		System.out.println("FindByTitleEquals = " +productRepository.findByTitleEquals("Iphone"));
+		//System.out.println("FindByTitleEquals = " +productRepository.findByTitleEquals("Iphone"));
 
 	}
 

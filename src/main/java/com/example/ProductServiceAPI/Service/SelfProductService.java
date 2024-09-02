@@ -3,7 +3,6 @@ package com.example.ProductServiceAPI.Service;
 import com.example.ProductServiceAPI.DTOs.GenericProductDTO;
 import com.example.ProductServiceAPI.Exceptions.InvalidInputException;
 import com.example.ProductServiceAPI.Exceptions.NotFoundException;
-import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.FakeStoreClientDTO;
 import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.SelfProductClientDTO;
 import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.SelfProductServiceClient;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public class SelfProductService implements ProductService{
     }
 
     @Override
-    public GenericProductDTO getProductById(Long id) throws NotFoundException {
+    public GenericProductDTO getProductById(Long id, Long userIdTryingToAccess) throws NotFoundException {
         return convertFakeStoreDTOToGenericDTO(selfProductServiceClient.getProductById(id));
     }
 

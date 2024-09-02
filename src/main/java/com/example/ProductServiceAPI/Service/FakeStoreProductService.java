@@ -5,7 +5,6 @@ import com.example.ProductServiceAPI.Exceptions.InvalidInputException;
 import com.example.ProductServiceAPI.Exceptions.NotFoundException;
 import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.FakeStoreClientDTO;
 import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.FakeStoreProductServiceClient;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDTO getProductById(Long id) throws NotFoundException{
+    public GenericProductDTO getProductById(Long id,Long userIdTryingToAccess) throws NotFoundException{
         return convertFakeStoreDTOToGenericDTO(fakeStoreProductServiceClient.getProductById(id));
     }
 
