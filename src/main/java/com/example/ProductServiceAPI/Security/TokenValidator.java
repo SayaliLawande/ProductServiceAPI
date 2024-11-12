@@ -12,7 +12,7 @@ public class TokenValidator {
 
     private RestTemplateBuilder restTemplateBuilder;
 
-    public TokenValidator(RestTemplateBuilder restTemplateBuilder){
+    /*public TokenValidator(RestTemplateBuilder restTemplateBuilder){
         this.restTemplateBuilder = restTemplateBuilder;
     }
 
@@ -20,6 +20,6 @@ public class TokenValidator {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
         return Optional.empty();
-    }
+    }*/
 
 }

@@ -23,7 +23,7 @@ public class ProductController {
     private TokenValidator tokenValidator;
 
     //Injection by using Constructor. Injecting productSErvice. And using Qualifier.
-    public ProductController(@Qualifier("selfProductService") ProductService productService, TokenValidator tokenValidator){
+    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService, TokenValidator tokenValidator){
         this.productService = productService;
         this.tokenValidator = tokenValidator;
     }
@@ -34,8 +34,8 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public GenericProductDTO getProductById(@Nullable @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken, @PathVariable("id") Long id) throws NotFoundException{
-        System.out.println("authToken = "+authToken);
+    public GenericProductDTO getProductById(/*@Nullable @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken,*/ @PathVariable("id") Long id) throws NotFoundException{
+        /*System.out.println("authToken = "+authToken);
 
         Optional<JwtObject> authTokenObjOptional;
 
@@ -53,10 +53,10 @@ public class ProductController {
 
         GenericProductDTO genericProductDTO = productService.getProductById(id,authTokenObj.getUserId());
         return  productService.getProductById(id,authTokenObj.getUserId());
-        //return  productService.getProductById(id,authTokenObj.getUsIerd());
+        //return  productService.getProductById(id,authTokenObj.getUsIerd());*/
 
-        //GenericProductDTO genericProductDTO = productService.getProductById(id);
-        //return  productService.getProductById(id);
+        GenericProductDTO genericProductDTO = productService.getProductById(id);
+        return  productService.getProductById(id);
     }
 
     @PostMapping("/")

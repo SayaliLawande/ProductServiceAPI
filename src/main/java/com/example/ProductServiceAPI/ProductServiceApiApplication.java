@@ -41,8 +41,8 @@ public class ProductServiceApiApplication implements CommandLineRunner {
 
 	public Product createProductRepoObj(Category category){
 		Product product = new Product();
-		product.setTitle("Iphone");
-		product.setDesciption("best");
+		product.setTitle("Redmi");
+		product.setDesciption("second best");
 		product.setCategory(category);
 
 		return product;

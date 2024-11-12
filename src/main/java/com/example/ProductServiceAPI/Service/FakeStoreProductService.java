@@ -5,6 +5,7 @@ import com.example.ProductServiceAPI.Exceptions.InvalidInputException;
 import com.example.ProductServiceAPI.Exceptions.NotFoundException;
 import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.FakeStoreClientDTO;
 import com.example.ProductServiceAPI.ThirdPartyClient.ProductService.FakeStoreProductServiceClient;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,8 +16,11 @@ public class FakeStoreProductService implements ProductService {
 
     private FakeStoreProductServiceClient fakeStoreProductServiceClient;
 
-    public FakeStoreProductService(FakeStoreProductServiceClient fakeStoreProductServiceClient){
+    private RedisTemplate<String,Object> redisTemplate;
+
+    public FakeStoreProductService(FakeStoreProductServiceClient fakeStoreProductServiceClient,RedisTemplate<String,Object> redisTemplate){
         this.fakeStoreProductServiceClient = fakeStoreProductServiceClient;
+        this.redisTemplate = redisTemplate;
     }
 
 
@@ -33,8 +37,26 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDTO getProductById(Long id,Long userIdTryingToAccess) throws NotFoundException{
-        return convertFakeStoreDTOToGenericDTO(fakeStoreProductServiceClient.getProductById(id));
+    public GenericProductDTO getProductById(Long id/*,Long userIdTryingToAccess*/) throws NotFoundException{
+        //check if the product exists in cache
+        GenericProductDTO genericProductDTO=(GenericProductDTO) redisTemplate.opsForHash().get("PRODUCTS",id);
+
+        //if yes:
+        //fetch it from cache
+
+        if(genericProductDTO!=null){
+            System.out.println("Fetching from cache");
+            return genericProductDTO;
+        }
+        //if no:
+        //make an api call to fakestore
+        //save details in cache
+        //return product
+
+        System.out.println("Fetching from API");
+        GenericProductDTO genericProductDTO1 = convertFakeStoreDTOToGenericDTO(fakeStoreProductServiceClient.getProductById(id));
+        redisTemplate.opsForHash().put("PRODUCTS",id,genericProductDTO1);
+        return genericProductDTO1;
     }
 
     @Override

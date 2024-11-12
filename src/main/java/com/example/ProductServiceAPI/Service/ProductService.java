@@ -10,7 +10,7 @@ public interface ProductService {
 
     public List<GenericProductDTO> getAllProducts() throws NotFoundException;
 
-    public GenericProductDTO getProductById(Long id, Long userIdTryingToAccess) throws NotFoundException;
+    public GenericProductDTO getProductById(Long id/*, Long userIdTryingToAccess*/) throws NotFoundException;
 
     public GenericProductDTO createProduct(GenericProductDTO genericProductDTO) throws InvalidInputException;
 
